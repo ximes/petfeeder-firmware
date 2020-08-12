@@ -46,6 +46,7 @@ defmodule Firmware.MixProject do
       {:shoehorn, "~> 0.6"},
       {:ring_logger, "~> 0.6"},
       {:toolshed, "~> 0.2"},
+      {:pigpiox, "~> 0.1.2", targets: @all_targets },
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
