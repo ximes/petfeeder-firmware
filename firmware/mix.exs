@@ -12,8 +12,6 @@ defmodule Firmware.MixProject do
       elixir: "~> 1.9",
       archives: [nerves_bootstrap: "~> 1.8"],
       start_permanent: Mix.env() == :prod,
-      # that new compiler doesn't seem to be found when running iex -S mix
-      compilers: [:elixir_make] ++ Mix.compilers,
       build_embedded: true,
       aliases: [loadconfig: [&bootstrap/1]],
       deps: deps(),
@@ -48,9 +46,6 @@ defmodule Firmware.MixProject do
       {:shoehorn, "~> 0.6"},
       {:ring_logger, "~> 0.6"},
       {:toolshed, "~> 0.2"},
-
-      # hx711 load cells need a driver, that must be compiled from c
-      {:elixir_make, "~> 0.6", targets: @all_targets },
       {:pigpiox, "~> 0.1.2", targets: @all_targets },
 
       # basic gpio, built on top of elixir_ale
