@@ -48,6 +48,12 @@ defmodule Firmware.MixProject do
       {:toolshed, "~> 0.2"},
       {:pigpiox, "~> 0.1.2", targets: @all_targets },
 
+      # basic gpio, built on top of elixir_ale
+      {:gpio_rpi, "~> 0.2.2", targets: @all_targets },
+
+      # i2c support
+      {:circuits_i2c, "~> 0.3.6", targets: @all_targets },
+
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
       {:nerves_pack, "~> 0.2", targets: @all_targets},

@@ -30,3 +30,7 @@ To start your Nerves app:
   * Forum: https://elixirforum.com/c/nerves-forum
   * Discussion Slack elixir-lang #nerves ([Invite](https://elixir-slackin.herokuapp.com/))
   * Source: https://github.com/nerves-project/nerves
+
+Pigpiox.GPIO.set_servo_pulsewidth(18, 2050)
+Pigpiox.GPIO.set_servo_pulsewidth(18, 1550)
+Pigpiox.GPIO.set_servo_pulsewidth(18, 1150)
