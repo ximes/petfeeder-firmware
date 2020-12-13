@@ -62,4 +62,4 @@ config :vintage_net,
 
 config :shoehorn,
   app: :firmware,
-  init: [:nerves_runtime, :nerves_pack, :nerves_firmware_ssh]
+  init: [:nerves_runtime, :nerves_pack, :nerves_ssh]

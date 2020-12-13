@@ -39,4 +39,15 @@ defmodule ApiWeb.Router do
       live_dashboard "/dashboard", metrics: ApiWeb.Telemetry
     end
   end
+
+
+    scope "/" do
+      pipe_through :api
+
+      forward "/graphiql", Absinthe.Plug.GraphiQL,
+        schema: ApiWeb.Schema,
+        socket: ApiWeb.UserSocket,
+        interface: :simple
+      forward "/api", Absinthe.Plug, schema: ApiWeb.Schema
+    end
 end
