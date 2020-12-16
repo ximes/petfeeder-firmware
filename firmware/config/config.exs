@@ -44,20 +44,19 @@ config :api, ApiWeb.Endpoint,
 config :vintage_net,
   config: [
     {"wlan0",
-      %{
-        type: VintageNetWiFi,
-        vintage_net_wifi: %{
-          networks: [
-            %{
-              key_mgmt: :wpa_psk,
-              psk: System.get_env("NERVES_NETWORK_PSK"),
-              ssid: System.get_env("NERVES_NETWORK_SSID")
-            }
-          ]
-        },
-        ipv4: %{method: :dhcp}
-      }
-    }
+     %{
+       type: VintageNetWiFi,
+       vintage_net_wifi: %{
+         networks: [
+           %{
+             key_mgmt: :wpa_psk,
+             psk: System.get_env("NERVES_NETWORK_PSK"),
+             ssid: System.get_env("NERVES_NETWORK_SSID")
+           }
+         ]
+       },
+       ipv4: %{method: :dhcp}
+     }}
   ]
 
 config :shoehorn,

@@ -4,7 +4,6 @@ defmodule Firmware.MixProject do
   @app :firmware
   @version "0.1.0"
   @all_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4, :bbb, :x86_64]
-  @raspberry [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]
 
   def project do
     [
@@ -14,7 +13,7 @@ defmodule Firmware.MixProject do
       archives: [nerves_bootstrap: "~> 1.8"],
       start_permanent: Mix.env() == :prod,
       # that new compiler doesn't seem to be found when running iex -S mix
-      # compilers: [:elixir_make] ++ Mix.compilers,
+      compilers: [:elixir_make] ++ Mix.compilers(),
       build_embedded: true,
       aliases: [loadconfig: [&bootstrap/1]],
       deps: deps(),
@@ -51,11 +50,11 @@ defmodule Firmware.MixProject do
       {:toolshed, "~> 0.2"},
 
       # hx711 load cells need a driver, that must be compiled from c
-      #{:elixir_make, "~> 0.6", targets: @all_targets},
-      {:pigpiox, "~> 0.1.2", targets: @raspberry},
+      {:elixir_make, "~> 0.6", targets: @all_targets},
+      {:pigpiox, "~> 0.1.2", targets: @all_targets},
 
       # basic gpio, built on top of elixir_ale
-      {:gpio_rpi, "~> 0.2.2", targets: @raspberry},
+      {:gpio_rpi, "~> 0.2.2", targets: @all_targets},
 
       # i2c support
       {:circuits_i2c, "~> 0.3.6", targets: @all_targets},
