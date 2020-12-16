@@ -34,6 +34,7 @@ defmodule PetfeederFirmware.Application do
       # Children for all targets except host
       # Starts a worker by calling: PetfeederFirmware.Worker.start_link(arg)
       # {PetfeederFirmware.Worker, arg},
+      PetfeederFirmware.Servos.Tray
     ]
   end
 

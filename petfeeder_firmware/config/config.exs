@@ -33,10 +33,24 @@ else
 end
 
 # When we deploy to a device, we use the "prod" configuration:
-import_config "../../petfeeder_api/config/config.exs"
-import_config "../../petfeeder_api/config/prod.exs"
+# import_config "../../petfeeder_api/config/config.exs"
+# import_config "../../petfeeder_api/config/prod.exs"
 
-config :petfeeder_api, PetfeederApiWeb.Endpoint,
+# TODO: remove
+# config :petfeeder_api, PetfeederApiWeb.Endpoint,
+#   # Nerves root filesystem is read-only, so disable the code reloader
+#   code_reloader: false,
+#   http: [port: 80],
+#   # Use compile-time Mix config instead of runtime environment variables
+#   load_from_system_env: false,
+#   # Start the server since we're running in a release instead of through `mix`
+#   server: true,
+#   url: [host: "nerves.local", port: 80]
+
+import_config "../../petfeeder_ui/config/config.exs"
+import_config "../../petfeeder_ui/config/prod.exs"
+
+config :petfeeder_ui, PetfeederUiWeb.Endpoint,
   # Nerves root filesystem is read-only, so disable the code reloader
   code_reloader: false,
   http: [port: 80],
@@ -45,16 +59,3 @@ config :petfeeder_api, PetfeederApiWeb.Endpoint,
   # Start the server since we're running in a release instead of through `mix`
   server: true,
   url: [host: "nerves.local", port: 80]
-
-# import_config "../../petfeeder_api/config/config.exs"
-# import_config "../../petfeeder_api/config/prod.exs"
-
-# config :ui, PetfeederUiWeb.Endpoint,
-#   # Nerves root filesystem is read-only, so disable the code reloader
-#   code_reloader: false,
-#   http: [port: 81],
-#   # Use compile-time Mix config instead of runtime environment variables
-#   load_from_system_env: false,
-#   # Start the server since we're running in a release instead of through `mix`
-#   server: true,
-#   url: [host: "nerves.local", port: 80]

@@ -5,12 +5,9 @@ defmodule PetfeederFirmware do
 
   @doc """
   Hello world.
-
   ## Examples
-
-      iex> PetfeederFirmware.hello
+      iex> FancyLightsFirmware.hello
       :world
-
   """
   def hello do
     :world

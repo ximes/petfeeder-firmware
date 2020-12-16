@@ -10,13 +10,19 @@ defmodule PetfeederFirmware.MixProject do
       app: @app,
       version: @version,
       elixir: "~> 1.9",
-      archives: [nerves_bootstrap: "~> 1.10"],
+      archives: [nerves_bootstrap: "~> 1.8"],
       start_permanent: Mix.env() == :prod,
       build_embedded: true,
+      aliases: [loadconfig: [&bootstrap/1]],
       deps: deps(),
       releases: [{@app, release()}],
       preferred_cli_target: [run: :host, test: :host]
     ]
+  end
+
+  def bootstrap(args) do
+    Application.start(:nerves_bootstrap)
+    Mix.Task.run("loadconfig", args)
   end
 
   # Run "mix help compile.app" to learn about applications.
@@ -30,18 +36,25 @@ defmodule PetfeederFirmware.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:petfeeder_api, path: "../petfeeder_api"},
-      {:petfeeder_ui, path: "../petfeeder_ui"},
-
       # Dependencies for all targets
       {:nerves, "~> 1.7.0", runtime: false},
       {:shoehorn, "~> 0.7.0"},
       {:ring_logger, "~> 0.8.1"},
       {:toolshed, "~> 0.2.13"},
 
+      # basic gpio, built on top of elixir_ale
+      # {:gpio_rpi, "~> 0.2.2", targets: @all_targets},
+
+      # i2c support
+      # {:circuits_i2c, "~> 0.3.7", targets: @all_targets},
+      # {:circuits_gpio, "~> 0.4.6", targets: @all_targets},
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.11.3", targets: @all_targets},
-      {:nerves_pack, "~> 0.4.0", targets: @all_targets},
+      {:nerves_pack, "~> 0.4.1", targets: @all_targets},
+      {:pigpiox, "~> 0.1.2", targets: @all_targets},
+
+      # {:petfeeder_api, path: "../petfeeder_api"},
+      {:petfeeder_ui, path: "../petfeeder_ui"},
 
       # Dependencies for specific targets
       {:nerves_system_rpi, "~> 1.13", runtime: false, targets: :rpi},
