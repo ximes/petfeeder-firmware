@@ -10,6 +10,8 @@ Application.start(:nerves_bootstrap)
 
 config :petfeeder_firmware, target: Mix.target()
 
+# config :pigpiox, hostname: 'nerves.local', port: 8888
+
 # Customize non-Elixir parts of the firmware. See
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 

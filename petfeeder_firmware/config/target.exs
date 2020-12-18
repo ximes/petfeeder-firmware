@@ -5,8 +5,8 @@ import Config
 # involved with firmware updates.
 
 config :shoehorn,
-  init: [:nerves_runtime, :nerves_pack],
-  app: Mix.Project.config()[:app]
+  app: Mix.Project.config()[:app],
+  init: [:nerves_runtime, :nerves_pack, :nerves_ssh]
 
 # Nerves Runtime can enumerate hardware devices and send notifications via
 # SystemRegistry. This slows down startup and not many programs make use of
